@@ -1,4 +1,5 @@
 import { CategoryRecipeResponseVm } from '@app/models/category-recipe-response.model';
+import { NewsArticleResponseVm } from '@app/models/news-article-response.model';
 import { RecipeResponseVm } from '@app/models/recipe-response.model';
 
 export const isValidRecipeResponseVm = (recipeResponse: RecipeResponseVm) =>
@@ -9,8 +10,17 @@ export const isValidRecipeResponseVm = (recipeResponse: RecipeResponseVm) =>
   recipeResponse?.strMealThumb &&
   recipeResponse?.strYoutube;
 
-  export const isValidCategoryRecipeResponseVm = (categoryRecipeResponse: CategoryRecipeResponseVm) =>
-    categoryRecipeResponse?.idMeal &&
+export const isValidCategoryRecipeResponseVm = (
+  categoryRecipeResponse: CategoryRecipeResponseVm
+) =>
+  categoryRecipeResponse?.idMeal &&
   categoryRecipeResponse?.strMeal &&
-    categoryRecipeResponse?.strMealThumb;
-  
+  categoryRecipeResponse?.strMealThumb;
+
+export const isValidNewsArticleResponseVm = (
+  newsArticleResponse: NewsArticleResponseVm
+) =>
+  newsArticleResponse?.url &&
+  newsArticleResponse?.title &&
+  newsArticleResponse?.urlToImage &&
+  newsArticleResponse?.description;

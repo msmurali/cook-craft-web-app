@@ -10,10 +10,14 @@ import {
 import { SearchRecipesResponseVm } from '@app/models/search-recipes-response.model';
 import {
   isValidCategoryRecipeResponseVm,
+  isValidNewsArticleResponseVm,
   isValidRecipeResponseVm,
 } from './validator.util';
 import { CategoryRecipesResponseVm } from '@app/models/category-recipes-response.model';
 import { CategoryRecipeResponseVm } from '@app/models/category-recipe-response.model';
+import { NewsResponseVm } from '@app/models/news-response.model';
+import { RecipeBlogVm } from '@app/models/recipe-blog.model';
+import { NewsArticleResponseVm } from '@app/models/news-article-response.model';
 
 export const mapCategoriesResponseVmToCategoriesStringList = (
   categoriesResponse: CategoriesResponseVm
@@ -78,6 +82,28 @@ export const mapCategoryRecipesResponseVmToRecipeVmList = (
     (<CategoryRecipeResponseVm[]>categoryRecipesResponse.meals)
       ?.filter(isValidCategoryRecipeResponseVm)
       .map(mapCategoryRecipeResponseVmToRecipeVm);
+  }
+  return [];
+};
+
+export const mapNewsArticleResponseVmToRecipeBlogVm = (
+  newsArticleResponse: NewsArticleResponseVm
+): RecipeBlogVm => {
+  return {
+    description: newsArticleResponse?.description,
+    sourceUrl: newsArticleResponse?.source,
+    thumbnailUrl: newsArticleResponse?.urlToImage,
+    title: newsArticleResponse?.title,
+  } as RecipeBlogVm;
+};
+
+export const mapNewsResponseVmToRecipesBlogVmList = (
+  newsResponse: NewsResponseVm
+): RecipeBlogVm[] => {
+  if (newsResponse?.articles) {
+    (<NewsArticleResponseVm[]>newsResponse?.articles)
+      ?.filter(isValidNewsArticleResponseVm)
+      .map(mapNewsArticleResponseVmToRecipeBlogVm);
   }
   return [];
 };
