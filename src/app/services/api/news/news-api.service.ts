@@ -9,8 +9,8 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class NewsApiService {
-  public getRecipeBlogs(): Observable<RecipeBlogVm[]> {
-    const newsListPath = apiConfig.newsApi.urls.getRecipeBlogsUrl();
+  public getRecipeBlogs(page: number): Observable<RecipeBlogVm[]> {
+    const newsListPath = apiConfig.newsApi.urls.getRecipeBlogsUrl(page);
     return this.http
       .get(newsListPath)
       .pipe(map(mapNewsResponseVmToRecipesBlogVmList));
