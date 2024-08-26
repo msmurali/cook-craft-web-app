@@ -1,9 +1,15 @@
-import { DEFAULT_CATEGORY_QUERY_PARAM_VALUE } from '@app/constants/const';
+import {
+  DEFAULT_MEAL_DB_API_CATEGORY,
+  DEFAULT_NEWS_API_PAGE_SIZE,
+  DEFAULT_NEWS_API_QUERY,
+  DEFAULT_NEWS_API_SEARCH_IN_PARAM,
+  DEFAULT_NEWS_API_SORT_BY_PARAM,
+} from '@app/constants/const';
 import { environment } from 'src/environments/environment';
 import { assetsConfig } from './assets.config';
 
 const getCategoriesUrl = () => {
-  const apiUrl = `${apiConfig.mealDbApi.baseUrl}${apiConfig.mealDbApi.paths.categories}?${apiConfig.mealDbApi.queryParams.category}=${DEFAULT_CATEGORY_QUERY_PARAM_VALUE}`;
+  const apiUrl = `${apiConfig.mealDbApi.baseUrl}${apiConfig.mealDbApi.paths.categories}?${apiConfig.mealDbApi.queryParams.category}=${DEFAULT_MEAL_DB_API_CATEGORY}`;
   const mockApiUrl = assetsConfig.path.categoriesList;
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
@@ -32,8 +38,8 @@ const getSearchRecipeByIdUrl = (id: string) => {
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
 
-const getRecipeBlogsUrl = () => {
-  const apiUrl = `${apiConfig.newsApi.baseUrl}?${apiConfig.newsApi.queryParams.query}=recipe&${apiConfig.newsApi.queryParams.searchIn}=title&${apiConfig.newsApi.queryParams.sortBy}=relevancy&${apiConfig.newsApi.queryParams.pageSize}=10&${apiConfig.newsApi.queryParams.page}=2&${apiConfig.newsApi.queryParams.apiKey}=${environment.apiKeys.newsApi}`;
+const getRecipeBlogsUrl = (page: number) => {
+  const apiUrl = `${apiConfig.newsApi.baseUrl}?${apiConfig.newsApi.queryParams.query}=${DEFAULT_NEWS_API_QUERY}&${apiConfig.newsApi.queryParams.searchIn}=${DEFAULT_NEWS_API_SEARCH_IN_PARAM}&${apiConfig.newsApi.queryParams.sortBy}=${DEFAULT_NEWS_API_SORT_BY_PARAM}&${apiConfig.newsApi.queryParams.pageSize}=${DEFAULT_NEWS_API_PAGE_SIZE}&${apiConfig.newsApi.queryParams.page}=${page}&${apiConfig.newsApi.queryParams.apiKey}=${environment.apiKeys.newsApi}`;
   const mockApiUrl = assetsConfig.path.newsList;
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
