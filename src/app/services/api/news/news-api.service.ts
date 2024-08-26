@@ -8,7 +8,7 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NewsApiService {
+export class NewsApi {
   public getRecipeBlogs(page: number): Observable<RecipeBlogVm[]> {
     const newsListPath = apiConfig.newsApi.urls.getRecipeBlogsUrl(page);
     return this.http
