@@ -7,11 +7,14 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { MealDbApi } from './services/api/meal-db/meal-db-api.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [provideHttpClient(withInterceptorsFromDi())],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

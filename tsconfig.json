@@ -30,6 +30,7 @@
       "@utils/*": ["src/app/utils/*"],
       "@models/*": ["src/app/models/*"],
       "@services/*": ["src/app/services/*"],
+      "@configs/*": ["src/configs/*"],
     }
   },
   "angularCompilerOptions": {

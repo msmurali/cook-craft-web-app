@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NewsMockApi } from './news-mock-api.service';
+import { NewsApiService } from './news-api.service';
 
-describe('NewsMockApiService', () => {
-  let service: NewsMockApi;
+describe('NewsApiService', () => {
+  let service: NewsApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NewsMockApi);
+    service = TestBed.inject(NewsApiService);
   });
 
   it('should be created', () => {

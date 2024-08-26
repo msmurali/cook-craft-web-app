@@ -75,6 +75,16 @@ export const mapSearchRecipesResponseVmToRecipeVmList = (
   return [];
 };
 
+export const mapSearchRecipesResponseVmToRecipeVm = (
+  searchRecipesResponse: SearchRecipesResponseVm
+): RecipeVm | null => {
+  if (searchRecipesResponse?.meals) {
+    (<RecipeResponseVm[]>searchRecipesResponse.meals)
+      ?.find(isValidRecipeResponseVm) || null;
+  }
+  return null;
+};
+
 export const mapCategoryRecipesResponseVmToRecipeVmList = (
   categoryRecipesResponse: CategoryRecipesResponseVm
 ): RecipeVm[] => {

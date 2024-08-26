@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MealDbApiService } from './meal-db-api.service';
+import { MealDbApi } from './meal-db-api.service';
 
 describe('MealDbApiService', () => {
-  let service: MealDbApiService;
+  let service: MealDbApi;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MealDbApiService);
+    service = TestBed.inject(MealDbApi);
   });
 
   it('should be created', () => {
