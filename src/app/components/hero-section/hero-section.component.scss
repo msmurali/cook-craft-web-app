@@ -1,0 +1,72 @@
+.hero-section {
+  padding: 1rem;
+  position: relative;
+  background: url("../../../assets/images/hero-section-bg-img.jpg");
+  background-position: left center;
+  background-size: cover;
+  min-height: 100vh;
+  align-content: center;
+
+  @media screen and (min-width: 768px) {
+    padding: 2.8rem;
+  }
+
+  &-content {
+    margin-top: 6rem;
+    
+
+    @media screen and (min-width: 768px) {
+      width: 65%;
+    }
+  }
+
+  &-tag-line {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #152900;
+
+    @media screen and (min-width: 768px) {
+      font-size: 4rem;
+    }
+  }
+
+  &-sub-tag-line {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #152900;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &-btn {
+    cursor: pointer;
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 32px;
+    background-color: var(--secondary);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+      -webkit-box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.25);
+      box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      box-shadow: none;
+      background-color: var(--secondary-light);
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-top: 1.5rem;
+    }
+  }
+}

@@ -1,1 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: white;
+  --primary-dark: #8080801a;
+  --secondary: #3E7D00;
+  --secondary-light: #91C25F;
+}
+
+/* Alex Brush (400) */
+@font-face {
+  font-family: "AlexBrush";
+  src: url("assets/fonts/AlexBrush-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Poppins Regular (400) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+/* Poppins Medium (500) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/assets/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+/* Poppins SemiBold (600) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
+/* Poppins Bold (700) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+/* Poppins ExtraBold (800) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
+}
+
+/* Poppins Black (900) */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/assets/fonts/Poppins-Black.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: "Poppins", "sans-serif";
+}
