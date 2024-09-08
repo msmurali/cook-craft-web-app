@@ -23,6 +23,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { TrendingRecipesComponent } from './components/trending-recipes/trending-recipes.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -36,6 +38,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     RecipesListComponent,
     TrendingRecipesComponent,
     RecipeComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     EffectsModule.forRoot([...effects]),
     MenubarModule,
     SharedModule,
+    FormsModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
