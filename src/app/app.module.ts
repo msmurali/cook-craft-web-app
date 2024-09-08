@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { TrendingBlogsComponent } from './components/trending-blogs/trending-blogs.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -45,6 +46,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     BlogComponent,
     BlogListComponent,
     TrendingBlogsComponent,
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,
