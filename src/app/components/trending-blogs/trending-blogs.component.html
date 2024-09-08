@@ -1,0 +1,9 @@
+<div class="trending-blogs">
+  <h1>Savor Stories</h1>
+  <app-blog-list
+    [blogList]="trendingBlogs$ | async | defaultTo : []"
+  ></app-blog-list>
+  <div class="trending-blogs-btn-bar">
+    <button class="trending-blogs-btn">See More</button>
+  </div>
+</div>

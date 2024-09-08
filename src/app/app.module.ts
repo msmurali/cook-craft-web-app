@@ -25,6 +25,9 @@ import { TrendingRecipesComponent } from './components/trending-recipes/trending
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogListComponent } from './components/blog-list/blog-list.component';
+import { TrendingBlogsComponent } from './components/trending-blogs/trending-blogs.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -39,6 +42,9 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     TrendingRecipesComponent,
     RecipeComponent,
     SearchBarComponent,
+    BlogComponent,
+    BlogListComponent,
+    TrendingBlogsComponent,
   ],
   imports: [
     BrowserModule,

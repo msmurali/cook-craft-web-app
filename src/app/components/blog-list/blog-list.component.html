@@ -1,0 +1,7 @@
+<div class="blog-list">
+  <ul class="blog-list-wrapper">
+    <li class="blog" *ngFor="let blog of blogList | defaultTo : []">
+      <app-blog [blog]="blog"></app-blog>
+    </li>
+  </ul>
+</div>
