@@ -20,6 +20,9 @@ import { RecipesEffects } from './store/recipes/recipes.effects';
 import { RecipeBlogsEffects } from './store/recipe-blogs/recipe-blogs.effects';
 import { RecipeCategoriesEffects } from './store/recipe-categories/recipe-categories.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { TrendingRecipesComponent } from './components/trending-recipes/trending-recipes.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -30,6 +33,9 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     HomePageComponent,
     HeaderComponent,
     CategoriesComponent,
+    RecipesListComponent,
+    TrendingRecipesComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule,

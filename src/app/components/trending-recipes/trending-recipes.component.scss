@@ -1,0 +1,11 @@
+.trending-recipes {
+  padding: 0 1rem 1rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 3rem 1rem;
+  }
+
+  &-title {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="recipe" [style.background]="getBackground()">
+  <div class="recipe-details">
+    <div class="recipe-title">{{ title }}</div>
+    <div class="recipe-rating">
+        <i *ngFor="let rate of rating" class="recipe-rate bi bi-star-fill"></i>
+    </div>
+  </div>
+</div>
