@@ -23,7 +23,7 @@ export const mapCategoriesResponseVmToCategoriesStringList = (
   categoriesResponse: CategoriesResponseVm
 ): string[] => {
   if (categoriesResponse?.meals) {
-    (<CategoryResponseVm[]>categoriesResponse.meals)
+    return (<CategoryResponseVm[]>categoriesResponse.meals)
       ?.filter((categoryResponse) => categoryResponse?.strCategory)
       ?.map((categoryResponse) => categoryResponse.strCategory) as string[];
   }
@@ -57,7 +57,7 @@ export const mapTrendingRecipesResponseVmToRecipeVmList = (
   trendingRecipesResponse: TrendingRecipesResponseVm
 ): RecipeVm[] => {
   if (trendingRecipesResponse?.meals) {
-    (<RecipeResponseVm[]>trendingRecipesResponse.meals)
+    return (<RecipeResponseVm[]>trendingRecipesResponse.meals)
       ?.filter(isValidRecipeResponseVm)
       .map(mapRecipeResponseVmToRecipeVm);
   }
@@ -68,7 +68,7 @@ export const mapSearchRecipesResponseVmToRecipeVmList = (
   searchRecipesResponse: SearchRecipesResponseVm
 ): RecipeVm[] => {
   if (searchRecipesResponse?.meals) {
-    (<RecipeResponseVm[]>searchRecipesResponse.meals)
+    return (<RecipeResponseVm[]>searchRecipesResponse.meals)
       ?.filter(isValidRecipeResponseVm)
       .map(mapRecipeResponseVmToRecipeVm);
   }
@@ -79,8 +79,12 @@ export const mapSearchRecipesResponseVmToRecipeVm = (
   searchRecipesResponse: SearchRecipesResponseVm
 ): RecipeVm | null => {
   if (searchRecipesResponse?.meals) {
-    (<RecipeResponseVm[]>searchRecipesResponse.meals)
-      ?.find(isValidRecipeResponseVm) || null;
+    const recipeResponse = (<RecipeResponseVm[]>(
+      searchRecipesResponse.meals
+    ))?.find(isValidRecipeResponseVm);
+    return recipeResponse
+      ? mapRecipeResponseVmToRecipeVm(recipeResponse)
+      : null;
   }
   return null;
 };
@@ -89,7 +93,7 @@ export const mapCategoryRecipesResponseVmToRecipeVmList = (
   categoryRecipesResponse: CategoryRecipesResponseVm
 ): RecipeVm[] => {
   if (categoryRecipesResponse?.meals) {
-    (<CategoryRecipeResponseVm[]>categoryRecipesResponse.meals)
+    return (<CategoryRecipeResponseVm[]>categoryRecipesResponse.meals)
       ?.filter(isValidCategoryRecipeResponseVm)
       .map(mapCategoryRecipeResponseVmToRecipeVm);
   }
@@ -111,7 +115,7 @@ export const mapNewsResponseVmToRecipesBlogVmList = (
   newsResponse: NewsResponseVm
 ): RecipeBlogVm[] => {
   if (newsResponse?.articles) {
-    (<NewsArticleResponseVm[]>newsResponse?.articles)
+    return (<NewsArticleResponseVm[]>newsResponse?.articles)
       ?.filter(isValidNewsArticleResponseVm)
       .map(mapNewsArticleResponseVmToRecipeBlogVm);
   }

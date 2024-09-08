@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
-  HttpClientModule,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
@@ -16,6 +15,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenubarModule } from 'primeng/menubar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/shared/shared.module';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { RecipesEffects } from './store/recipes/recipes.effects';
+import { RecipeBlogsEffects } from './store/recipe-blogs/recipe-blogs.effects';
+import { RecipeCategoriesEffects } from './store/recipe-categories/recipe-categories.effects';
+import { EffectsModule } from '@ngrx/effects';
+
+const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
 @NgModule({
   declarations: [
@@ -23,17 +29,19 @@ import { SharedModule } from 'src/shared/shared.module';
     HeroSectionComponent,
     HomePageComponent,
     HeaderComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([...effects]),
     MenubarModule,
     SharedModule,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

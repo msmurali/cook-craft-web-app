@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import * as recipeCategoriesActions from './recipe-categories.actions';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { MealDbApi } from '@app/services/api/meal-db/meal-db-api.service';
 
 @Injectable()
-export class RecipeCategories {
+export class RecipeCategoriesEffects {
   readonly getCategories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipeCategoriesActions.getCategories),

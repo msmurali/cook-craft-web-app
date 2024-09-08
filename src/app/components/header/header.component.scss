@@ -12,6 +12,10 @@
   z-index: 10;
   color: #152900;
 
+  @media screen and (min-width: 768px) {
+    padding: 0 3rem;
+  }
+
 
   & .logo {
     font-family: "AlexBrush", sans-serif;

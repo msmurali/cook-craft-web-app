@@ -13,7 +13,7 @@ import {
   mapTrendingRecipesResponseVmToRecipeVmList,
 } from '@app/utils/mapper.util';
 import { apiConfig } from '@configs/api.config';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

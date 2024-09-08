@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 
-const selectRecipesByCategory = (state: AppState) => state.categoryRecipes;
+const selectRecipesByCategory = ({ categoryRecipes }: AppState) => categoryRecipes;
 
 export const selectCategories$ = createSelector(
   selectRecipesByCategory,

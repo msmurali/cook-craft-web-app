@@ -6,7 +6,7 @@ import * as recipeBlogsActions from './recipe-blogs.actions';
 import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable()
-export class RecipeBlogs {
+export class RecipeBlogsEffects {
   readonly getRecipeBlogs$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipeBlogsActions.getRecipeBlogs),

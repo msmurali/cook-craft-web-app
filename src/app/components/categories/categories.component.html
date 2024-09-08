@@ -1,0 +1,24 @@
+<div class="categories">
+  <h1>Categories</h1>
+  <div
+    *ngIf="categoryColors$ | async | defaultTo : {}; let colors"
+  >
+    <ul class="categories-wrapper">
+      <li *ngFor="let category of categories$ | async | defaultTo : []">
+        <div
+          class="category"
+          [style.background]="getBackground(colors[category])"
+        >
+          <div class="category-img-wrapper">
+            <img
+              class="category-img"
+              src="/assets/images/{{ category }}.png"
+              alt="{{ category }}"
+            />
+          </div>
+          <span class="category-text">{{ category }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
