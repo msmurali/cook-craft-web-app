@@ -29,6 +29,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { TrendingBlogsComponent } from './components/trending-blogs/trending-blogs.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -47,6 +48,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     BlogListComponent,
     TrendingBlogsComponent,
     SubscriptionComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
