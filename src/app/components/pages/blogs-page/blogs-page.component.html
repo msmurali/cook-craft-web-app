@@ -1,0 +1,27 @@
+<div class="blogs-page">
+  <app-header></app-header>
+  <div class="blogs-page-list">
+    <app-blog-list
+      [blogList]="recipeBlogs$ | async | defaultTo : []"
+    ></app-blog-list>
+    <div
+      class="blogs-page-pagination"
+      *ngIf="currentPage$ | async | defaultTo : 1; let currentPage"
+    >
+      <button
+        class="blogs-page-pagination-btn"
+        [disabled]="disableCheckPreviousBtn$ | async"
+        (click)="moveToPreviousPage(currentPage)"
+      >
+        < Previous
+      </button>
+      <button
+        class="blogs-page-pagination-btn"
+        [disabled]="disableCheckNextBtn$ | async"
+        (click)="moveToNextPage(currentPage)"
+      >
+        Next >
+      </button>
+    </div>
+  </div>
+</div>

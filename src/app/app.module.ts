@@ -32,6 +32,9 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
 import { FooterComponent } from './components/footer/footer.component';
 import { RecipePageComponent } from './components/pages/recipe-page/recipe-page.component';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
+import { BlogsPageComponent } from './components/pages/blogs-page/blogs-page.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -53,6 +56,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     FooterComponent,
     RecipePageComponent,
     CategoryPageComponent,
+    BlogsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +67,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     MenubarModule,
     SharedModule,
     FormsModule,
+    NgxPaginationModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],

@@ -1,0 +1,41 @@
+.blogs-page {
+
+    &-list {
+        margin-top: 5rem;
+        padding: 1rem;
+
+        @media screen and (min-width: 768px) {
+            padding: 3rem;
+        }
+    }
+
+    &-pagination {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-pagination-btn {
+        font-family: 'Poppins', sans-serif;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        font-size: 0.6rem 1rem;
+        padding: 1em;
+        cursor: pointer;
+
+        &:last-child {
+            margin-left: 1rem;
+        }
+
+        &:hover {
+            background-color: var(--primary-dark);
+        }
+
+        &:active {
+            background-color: var(--primary-dark);
+        }
+    }
+}

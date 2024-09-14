@@ -7,13 +7,30 @@ import { catchError, map, mergeMap, of } from 'rxjs';
 
 @Injectable()
 export class RecipeBlogsEffects {
+  readonly onInitRecipeBlogs$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(recipeBlogsActions.initRecipeBlogs),
+      map(() => recipeBlogsActions.setCurrentPage({ page: 1 }))
+    )
+  );
+
+  readonly onChangePage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(recipeBlogsActions.setCurrentPage),
+      map(({ page }) => recipeBlogsActions.getRecipeBlogs({ page }))
+    )
+  );
+
   readonly getRecipeBlogs$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipeBlogsActions.getRecipeBlogs),
       mergeMap(({ page }) =>
         this.newsApi.getRecipeBlogs(page).pipe(
-          map((recipeBlogs) =>
-            recipeBlogsActions.getRecipeBlogsSucceed({ recipeBlogs })
+          map(([recipeBlogs, totalRecipeBlogs]) =>
+            recipeBlogsActions.getRecipeBlogsSucceed({
+              recipeBlogs,
+              totalRecipeBlogs,
+            })
           ),
           catchError((err) => of(recipeBlogsActions.getRecipeBlogsFailed()))
         )
