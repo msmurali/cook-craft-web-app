@@ -1,0 +1,22 @@
+<div
+  class="category-page"
+  *ngIf="categoryColors$ | async | defaultTo : {}; let colors"
+>
+  <div class="category-page-bg" [style.background]="getBackground(colors)"></div>
+  <app-header></app-header>
+  <div class="category-page-content">
+    <div class="category-page-details">
+      <img
+        class="category-page-img"
+        src="/assets/images/{{ category }}.png"
+        alt="{{ category }}"
+      />
+      <h1 class="category-page-title" [style.background]="getTextBackground(colors)">
+        {{ category }}
+      </h1>
+    </div>
+    <div class="category-page-recipes">
+        <app-recipes-list [recipesList]="recipesByCategories$ | async | defaultTo: []"></app-recipes-list>
+    </div>
+  </div>
+</div>

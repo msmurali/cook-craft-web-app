@@ -1,11 +1,10 @@
 <div class="categories">
   <h1>Categories</h1>
-  <div
-    *ngIf="categoryColors$ | async | defaultTo : {}; let colors"
-  >
+  <div *ngIf="categoryColors$ | async | defaultTo : {}; let colors">
     <ul class="categories-wrapper">
       <li *ngFor="let category of categories$ | async | defaultTo : []">
         <div
+          (click)="navigateToCategoryPage(category)"
           class="category"
           [style.background]="getBackground(colors[category])"
         >

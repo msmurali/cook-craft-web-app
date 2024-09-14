@@ -9,12 +9,6 @@ export interface AppState {
   recipeBlogs: fromBlogRecipesFeature.RecipeBlogsState;
 }
 
-export const appState: AppState = {
-  recipes: fromRecipesFeature.recipesState,
-  categoryRecipes: fromCategoryRecipesFeature.recipeCategoriesState,
-  recipeBlogs: fromBlogRecipesFeature.recipeBlogsState,
-};
-
 export const appReducer = {
   recipes: fromRecipesFeature.recipesReducer,
   categoryRecipes: fromCategoryRecipesFeature.recipeCategoriesRecuder,

@@ -30,6 +30,8 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { TrendingBlogsComponent } from './components/trending-blogs/trending-blogs.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RecipePageComponent } from './components/pages/recipe-page/recipe-page.component';
+import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -49,6 +51,8 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     TrendingBlogsComponent,
     SubscriptionComponent,
     FooterComponent,
+    RecipePageComponent,
+    CategoryPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     EffectsModule.forRoot([...effects]),
     MenubarModule,
     SharedModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppState } from '@app/store/app.reducer';
 import { selectCategories$ } from '@app/store/recipe-categories/recipe-categories.selectors';
 import { assetsConfig } from '@configs/assets.config';
@@ -17,12 +18,19 @@ export class CategoriesComponent {
     assetsConfig.path.categoryColorsList
   );
 
-  constructor(readonly store: Store<AppState>, readonly http: HttpClient) {
+  constructor(
+    readonly store: Store<AppState>,
+    readonly http: HttpClient,
+    readonly router: Router
+  ) {
     this.categories$ = this.store.select(selectCategories$);
   }
 
-  getBackground = (color: string) =>
-    {
-      return `linear-gradient(180deg, transparent, ${color})`;
-    };
+  getBackground = (color: string) => {
+    return `linear-gradient(180deg, transparent, ${color})`;
+  };
+
+  navigateToCategoryPage(category: string) {
+    this.router.navigate(['/', 'category', category]);
+  }
 }
