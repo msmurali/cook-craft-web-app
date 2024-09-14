@@ -59,7 +59,7 @@ export const mapTrendingRecipesResponseVmToRecipeVmList = (
   if (trendingRecipesResponse?.meals) {
     return (<RecipeResponseVm[]>trendingRecipesResponse.meals)
       ?.filter(isValidRecipeResponseVm)
-      .map(mapRecipeResponseVmToRecipeVm);
+      .map(mapRecipeResponseVmToRecipeVm).slice(0, 10);
   }
   return [];
 };
@@ -105,7 +105,7 @@ export const mapNewsArticleResponseVmToRecipeBlogVm = (
 ): RecipeBlogVm => {
   return {
     description: newsArticleResponse?.description,
-    sourceUrl: newsArticleResponse?.source,
+    sourceUrl: newsArticleResponse?.url,
     thumbnailUrl: newsArticleResponse?.urlToImage,
     title: newsArticleResponse?.title,
   } as RecipeBlogVm;

@@ -1,16 +1,24 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
-  styleUrl: './recipe.component.scss'
+  styleUrl: './recipe.component.scss',
 })
 export class RecipeComponent {
   readonly rating = new Array(this.getRandomRating());
   public title!: string;
   public tag!: string;
   public thumbnailUrl!: string;
+  public recipeId!: string;
 
+  constructor(readonly router: Router) {}
+
+  @Input('id')
+  set setRecipeId(id: string) {
+    this.recipeId = id;
+  }
 
   @Input('title')
   set setTitle(title: string) {
@@ -35,4 +43,7 @@ export class RecipeComponent {
     return Math.floor(Math.random() * 5) + 1;
   }
 
+  onClickRecipe(recipeId: string) {
+    this.router.navigate(['/', 'recipe', recipeId]);
+  }
 }

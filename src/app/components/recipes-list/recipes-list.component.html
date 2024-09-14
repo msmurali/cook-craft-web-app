@@ -1,7 +1,7 @@
 <div class="recipes-list">
     <ul class="recipes-list-wrapper">
         <li class="recipe" *ngFor="let recipe of recipesList | defaultTo: []">
-            <app-recipe [title]="recipe?.title" [thumbnailUrl]="recipe?.thumbnailUrl"></app-recipe>
+            <app-recipe [title]="recipe?.title" [thumbnailUrl]="recipe?.thumbnailUrl" [id]="recipe?.id"></app-recipe>
         </li>
     </ul>
 </div>

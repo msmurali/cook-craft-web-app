@@ -1,3 +1,5 @@
 export interface MenuItemVm {
-    label: string
+    label: string;
+    path?: string;
+    fragment?: string;
 }

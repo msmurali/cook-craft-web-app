@@ -13,4 +13,8 @@ export class BlogComponent {
   set setBlog(blog: RecipeBlogVm) {
     this.blog = blog;
   }
+
+  onClickBlog(sourceUrl: string) {
+    window.open(sourceUrl, '_black');
+  }
 }

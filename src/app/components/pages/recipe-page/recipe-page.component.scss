@@ -8,7 +8,7 @@
     @media screen and (min-width: 768px) {
       padding: 3rem;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 2rem;
+      grid-gap: 5rem;
     }
   }
 
@@ -20,10 +20,10 @@
   &-instruction {
     display: flex;
     grid-template-columns: auto 1fr;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 1.8rem;
+      margin-bottom: 3rem;
     }
 
     &-icon {

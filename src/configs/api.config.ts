@@ -46,11 +46,11 @@ const getRecipeBlogsUrl = (page: number) => {
 
 export const apiConfig = {
   mealDbApi: {
-    baseUrl: 'www.themealdb.com/api/json/v1/1',
+    baseUrl: 'https://www.themealdb.com/api/json/v1/1',
     paths: {
       search: '/search.php',
       searchById: '/lookup.php',
-      trending: '/randomselection.php',
+      trending: '/search.php?f=c',
       categories: '/list.php',
       searchByCategory: '/filter.php',
     },

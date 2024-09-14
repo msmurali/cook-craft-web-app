@@ -1,6 +1,10 @@
-<div class="blog">
+<div class="blog" (click)="onClickBlog(blog.sourceUrl)">
   <div class="blog-thumbnail">
-    <img class="blog-thumbnail-img" src="{{ blog.thumbnailUrl }}" alt="{{ blog.title }}" />
+    <img
+      class="blog-thumbnail-img"
+      src="{{ blog.thumbnailUrl }}"
+      alt="{{ blog.title }}"
+    />
   </div>
   <div class="blog-content">
     <div class="blog-title">{{ blog.title }}</div>

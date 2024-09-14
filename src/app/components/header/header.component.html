@@ -11,6 +11,7 @@
           <li
             class="menu-item"
             *ngFor="let menuItem of menuItems$ | async | defaultTo : []"
+            (click)="navigateTo(menuItem)"
           >
             {{ menuItem?.label }}
           </li>

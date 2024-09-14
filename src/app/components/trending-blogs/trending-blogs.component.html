@@ -4,6 +4,6 @@
     [blogList]="trendingBlogs$ | async | defaultTo : []"
   ></app-blog-list>
   <div class="trending-blogs-btn-bar">
-    <button class="trending-blogs-btn">See More</button>
+    <button class="trending-blogs-btn" [routerLink]="'/blogs'">See More</button>
   </div>
 </div>

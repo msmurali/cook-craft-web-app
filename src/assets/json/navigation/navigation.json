@@ -1,17 +1,24 @@
 [
-    {
-        "label": "Home"
-    },
-    {
-        "label": "Recipes"
-    },
-    {
-        "label": "Blog"
-    },
-    {
-        "label": "Search"
-    },
-    {
-        "label": "About"
-    }
+  {
+    "label": "Home",
+    "path": "/home"
+  },
+  {
+    "label": "Recipes",
+    "path": "/home",
+    "fragment": "trending-recipes"
+  },
+  {
+    "label": "Blog",
+    "path": "/blogs"
+  },
+  {
+    "label": "Search",
+    "path": "/home",
+    "fragment": "search-recipes"
+  },
+  {
+    "label": "About",
+    "path": "/home"
+  }
 ]

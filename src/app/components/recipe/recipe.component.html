@@ -1,4 +1,4 @@
-<div class="recipe" [style.background]="getBackground()">
+<div class="recipe" [style.background]="getBackground()" (click)="onClickRecipe(recipeId)">
   <div class="recipe-details">
     <div class="recipe-title">{{ title }}</div>
     <div class="recipe-rating">
