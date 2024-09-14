@@ -30,12 +30,4 @@ export const recipesReducer = createReducer(
     ...currState,
     recipe: null,
   })),
-  on(recipesActions.getRecipeByNameSucceed, (currState, { recipes }) => ({
-    ...currState,
-    recipe: recipes?.find((recipe) => recipe) || null,
-  })),
-  on(recipesActions.getRecipeByNameFailed, (currState) => ({
-    ...currState,
-    recipe: null,
-  }))
 );

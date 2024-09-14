@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppState } from '@app/store/app.reducer';
+import { getRecipeById } from '@app/store/recipes/recipes.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-recipe',
@@ -13,7 +16,8 @@ export class RecipeComponent {
   public thumbnailUrl!: string;
   public recipeId!: string;
 
-  constructor(readonly router: Router) {}
+  constructor(readonly store: Store<AppState>) {}
+
 
   @Input('id')
   set setRecipeId(id: string) {
@@ -44,6 +48,6 @@ export class RecipeComponent {
   }
 
   onClickRecipe(recipeId: string) {
-    this.router.navigate(['/', 'recipe', recipeId]);
+    this.store.dispatch(getRecipeById({ id: recipeId }));
   }
 }

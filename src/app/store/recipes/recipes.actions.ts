@@ -10,7 +10,7 @@ export const getTrendingRecipes = createAction(
 );
 
 export const getTrendingRecipesSucceed = createAction(
-  IDENTIFIER.concat(ActionTypes.GET_RECIPE_BY_ID_SUCCEED),
+  IDENTIFIER.concat(ActionTypes.GET_TRENDING_RECIPES_SUCCEED),
   props<{ trendingRecipes: RecipeVm[] }>()
 );
 

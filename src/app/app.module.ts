@@ -34,7 +34,8 @@ import { RecipePageComponent } from './components/pages/recipe-page/recipe-page.
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 import { BlogsPageComponent } from './components/pages/blogs-page/blogs-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
 
@@ -67,7 +68,11 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
     MenubarModule,
     SharedModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],

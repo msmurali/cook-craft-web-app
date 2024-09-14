@@ -6,6 +6,6 @@
       <input class="search-bar-input" placeholder="Search recipes by name" type="text" [(ngModel)]="searchText" />
       <div class="search-bar-icon"><i class="bi bi-mic-fill"></i></div>
     </div>
-    <button class="search-bar-btn">Search</button>
+    <button class="search-bar-btn" (click)="onSearch()">Search</button>
   </div>
 </div>

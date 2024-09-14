@@ -4,6 +4,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as recipesActions from './recipes.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { MealDbApi } from '@app/services/api/meal-db/meal-db-api.service';
+import { Router } from '@angular/router';
+import { ToastService } from 'src/shared/services/toast.service';
+import {
+  isValidRecipeResponseVm,
+  isValidRecipeVm,
+} from '@app/utils/validator.util';
 
 @Injectable()
 export class RecipesEffects {
@@ -33,6 +39,24 @@ export class RecipesEffects {
     )
   );
 
+  readonly navigateToRecipePage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(recipesActions.getRecipeByNameSucceed),
+        tap(({ recipes }) => {
+          const recipe = recipes?.find((recipe) => !!recipe?.id);
+          if (recipe) {
+            void this.router.navigate(['/', 'recipe', recipe?.id]);
+          } else {
+            this.toast.showErrorToast(
+              'Recipe not found, try again with different name'
+            );
+          }
+        })
+      ),
+    { dispatch: false }
+  );
+
   readonly getRecipeById$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipesActions.getRecipeById),
@@ -45,9 +69,27 @@ export class RecipesEffects {
     )
   );
 
+  readonly navigateToRecipePageByRecipeId$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(recipesActions.getRecipeByIdSucceed),
+        tap(() => console.log(1)),
+        tap(({ recipe }) => {
+          if (isValidRecipeVm(recipe)) {
+            void this.router.navigate(['/', 'recipe', recipe?.id]);
+          } else {
+            this.toast.showErrorToast('Something went wrong, try again later');
+          }
+        })
+      ),
+    { dispatch: false }
+  );
+
   constructor(
     readonly store: Store,
     readonly actions$: Actions,
-    readonly mealdbApi: MealDbApi
+    readonly mealdbApi: MealDbApi,
+    readonly router: Router,
+    readonly toast: ToastService
   ) {}
 }

@@ -1,6 +1,7 @@
 import { CategoryRecipeResponseVm } from '@app/models/category-recipe-response.model';
 import { NewsArticleResponseVm } from '@app/models/news-article-response.model';
 import { RecipeResponseVm } from '@app/models/recipe-response.model';
+import { RecipeVm } from '@app/models/recipe.model';
 
 export const isValidRecipeResponseVm = (recipeResponse: RecipeResponseVm) =>
   recipeResponse?.idMeal &&
@@ -24,3 +25,10 @@ export const isValidNewsArticleResponseVm = (
   newsArticleResponse?.title &&
   newsArticleResponse?.urlToImage &&
   newsArticleResponse?.description;
+
+export const isValidRecipeVm = (recipe: RecipeVm | null) =>
+  recipe?.id &&
+  recipe?.ingredients &&
+  recipe?.instructions &&
+  recipe?.thumbnailUrl &&
+  recipe?.title;
