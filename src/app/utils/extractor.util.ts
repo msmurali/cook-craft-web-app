@@ -8,23 +8,25 @@ import { RecipeResponseVm } from '@app/models/recipe-response.model';
 export const extractIngredientsFromRecipeResponseVm = (
   recipeResponse: RecipeResponseVm
 ): IngredientVm[] => {
-  return Array(MEAL_DB_API_INGREDIENTS_LEN).reduce((acc, _, index) => {
-    const ingredientNameKey = `strIngredient${
-      index + 1
-    }` as keyof RecipeResponseVm;
-    const ingredientQuantityKey = `strMeasure${
-      index + 1
-    }` as keyof RecipeResponseVm;
+  const ingredients = [];
+
+  for (let index = 1; index <= MEAL_DB_API_INGREDIENTS_LEN; index++) {
+    const ingredientNameKey = `strIngredient${index}` as keyof RecipeResponseVm;
+    const ingredientQuantityKey =
+      `strMeasure${index}` as keyof RecipeResponseVm;
+
     const ingredientName = recipeResponse[ingredientNameKey];
     const ingredientQuantity = recipeResponse[ingredientQuantityKey];
+
     if (ingredientName && ingredientQuantity) {
-      return [
-        ...acc,
-        { name: ingredientName, quantity: ingredientQuantity },
-      ] as IngredientVm[];
+      ingredients.push({
+        name: ingredientName,
+        quantity: ingredientQuantity,
+      } as IngredientVm);
     }
-    return acc;
-  }, [] as IngredientVm[]);
+  }
+
+  return ingredients;
 };
 
 export const extractInstructionsFromRecipeResponseVm = (
@@ -33,6 +35,7 @@ export const extractInstructionsFromRecipeResponseVm = (
   return (
     recipeResponse?.strInstructions
       ?.split(MEAL_DB_API_INSTRCUTION_DELIMITER)
-      ?.map((instruction) => instruction?.trim()) || []
+      ?.map((instruction) => instruction?.trim())
+      ?.filter((instruction) => !!instruction) || []
   );
 };

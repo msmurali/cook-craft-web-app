@@ -1,1 +1,54 @@
-<p>recipe-page works!</p>
+<div class="recipe-page">
+  <app-header></app-header>
+  <div
+    class="recipe-content"
+    *ngIf="recipe$ | async | defaultTo : {}; let recipe"
+  >
+    <div class="recipe-content-section-one">
+      <div class="recipe-title">
+        <h1>{{ recipe?.title }}</h1>
+      </div>
+      <div class="recipe-img-wrapper">
+        <img
+          class="recipe-img"
+          src="{{ recipe?.thumbnailUrl }}"
+          alt="recipe-img"
+        />
+      </div>
+    </div>
+    <div class="recipe-content-section-two">
+      <div class="recipe-instructions">
+        <h1>Instructions</h1>
+        <ng-container
+          *ngFor="let instruction of recipe?.instructions | defaultTo : []"
+        >
+          <div class="recipe-instruction">
+            <i class="recipe-instruction-icon bi bi-record-circle-fill"></i>
+            <span>{{ instruction }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <div>
+        <h1>Ingredients</h1>
+        <div class="recipe-ingredients">
+          <ng-container
+            *ngFor="let ingredient of recipe?.ingredients | defaultTo : []"
+          >
+            <div class="recipe-ingredient">
+              <span>
+                <span class="round">
+                  <input type="checkbox" checked id="checkbox" />
+                  <label for="checkbox"></label>
+                </span>
+                {{ ingredient?.name }}</span
+              >
+              <span> {{ ingredient?.quantity }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="recipe-similar"></div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

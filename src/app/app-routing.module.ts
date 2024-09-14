@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 import { BlogsPageComponent } from './components/pages/blogs-page/blogs-page.component';
+import { RecipePageComponent } from './components/pages/recipe-page/recipe-page.component';
 
 const routes: Routes = [
   {
@@ -24,8 +25,13 @@ const routes: Routes = [
   {
     path: 'blogs',
     component: BlogsPageComponent,
-    title: 'Cook Craft Blogs'
-  }
+    title: 'Cook Craft Blogs',
+  },
+  {
+    path: 'recipe/:recipeId',
+    component: RecipePageComponent,
+    title: 'Cook Craft Recipe',
+  },
 ];
 
 @NgModule({
