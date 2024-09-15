@@ -1,18 +1,5 @@
 {
-  "builds": [
-    {
-      "src": "src/main.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    }
-  ]
+  "version": 2,
+  "builds": [{ "src": "dist/cook-craft-web-app/**", "use": "@vercel/static" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
