@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AppState } from '@app/store/app.reducer';
+import { subscribeNewsLetter } from '@app/store/news-letter/news-letter.actions';
+import { Store } from '@ngrx/store';
 import { ToastService } from 'src/shared/services/toast.service';
 
 @Component({
@@ -9,16 +12,18 @@ import { ToastService } from 'src/shared/services/toast.service';
 })
 export class SubscriptionComponent {
   public email: string = '';
-  private apiUrl =
-    'https://cook-craft-web-70fvywo1h-msmuralis-projects.vercel.app/api/subscribe';
 
   onSubscribe() {
     if (this.email) {
-      this.http.post(this.apiUrl, { email: this.email });
+      this.store.dispatch(subscribeNewsLetter({ email: this.email }));
     } else {
-      this.toast.showErrorToast('Email is mandatory to subscribe');
+      this.toast.showErrorToast('Enter email to subscribe');
     }
   }
 
-  constructor(readonly toast: ToastService, readonly http: HttpClient) {}
+  constructor(
+    readonly toast: ToastService,
+    readonly http: HttpClient,
+    readonly store: Store<AppState>
+  ) {}
 }

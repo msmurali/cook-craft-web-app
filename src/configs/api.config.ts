@@ -44,6 +44,11 @@ const getRecipeBlogsUrl = (page: number) => {
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
 
+const getSubscriptionUrl = () => {
+  const apiUrl = `${apiConfig.newsLetterApi.baseUrl}?${apiConfig.newsLetterApi.paths.subscribe}`;
+  return apiUrl;
+};
+
 export const apiConfig = {
   mealDbApi: {
     baseUrl: 'https://www.themealdb.com/api/json/v1/1',
@@ -80,6 +85,15 @@ export const apiConfig = {
     },
     urls: {
       getRecipeBlogsUrl,
+    },
+  },
+  newsLetterApi: {
+    baseUrl: 'https://cook-craft-web-70fvywo1h-msmuralis-projects.vercel.app',
+    paths: {
+      subscribe: '/api/subscribe',
+    },
+    urls: {
+      getSubscriptionUrl,
     },
   },
 };
