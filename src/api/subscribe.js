@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       await client.connect();
       await client.query('INSERT INTO subscribers (email) VALUES ($1)', [email]);
       await client.end();
-      res.status(200).json({ message: 'Subscribed to news-letter' });
+      res.status(200).json({ message: 'Subscribed to weekly news-letter' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Something went wrong, try again later' });
