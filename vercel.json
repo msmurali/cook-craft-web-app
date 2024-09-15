@@ -1,5 +1,0 @@
-{
-  "version": 2,
-  "builds": [{ "src": "dist/cook-craft-web-app/**", "use": "@vercel/static" }],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
