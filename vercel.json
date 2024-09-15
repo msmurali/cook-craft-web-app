@@ -6,7 +6,7 @@
       "use": "@vercel/node"  
     },
     {
-      "src": "dist/my-angular-app/**", 
+      "src": "dist/cook-craft-web-app/**", 
       "use": "@vercel/static"          
     }
   ],
