@@ -10,9 +10,14 @@
       padding: 5rem 2rem;
       position: relative;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       border: 1px solid var(--primary-dark);
+
+      @media screen and (min-width: 768px) {
+        flex-wrap: nowrap
+      }
     }
   
     &-input-wrapper {
@@ -56,9 +61,11 @@
       color: white;
       font-family: "Poppins", sans-serif;
       transition: all 200ms ease-in-out;
+      margin-top: 2rem;
   
       @media screen and (min-width: 768px) {
         padding: 0.6em 2em;
+        margin-top: 2rem;
       }
   
       &:hover {

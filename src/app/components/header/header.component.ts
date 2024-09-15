@@ -25,8 +25,12 @@ export class HeaderComponent {
   }
 
   public navigateTo(menuItem: MenuItemVm) {
-    this.router.navigate([`${menuItem?.path}`], {
-      fragment: menuItem?.fragment,
+    this.navigateToUrl(menuItem?.path, menuItem?.fragment);
+  }
+
+  public navigateToUrl(url?: string, fragment?: string) {
+    this.router.navigate([`${url}`], {
+      fragment,
     });
   }
 }

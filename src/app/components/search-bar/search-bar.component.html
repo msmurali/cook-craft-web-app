@@ -3,9 +3,27 @@
   <div class="search-bar-content">
     <div class="search-bar-bg"></div>
     <div class="search-bar-input-wrapper">
-      <input class="search-bar-input" placeholder="Search recipes by name" type="text" [(ngModel)]="searchText" />
-      <div class="search-bar-icon"><i class="bi bi-mic-fill"></i></div>
+      <input
+        class="search-bar-input"
+        placeholder="Search recipes by name"
+        type="text"
+        [(ngModel)]="searchText"
+      />
+      <div class="search-bar-icon" (click)="startOrStop()">
+        <ng-container *ngIf="!isMicOn">
+          <i class="bi bi-mic-fill"></i>
+        </ng-container>
+      </div>
     </div>
-    <button class="search-bar-btn" (click)="onSearch()">Search</button>
+    <button class="search-bar-btn" (click)="onSearch()" *ngIf="!isMicOn">
+      Search
+    </button>
+    <button
+      class="search-bar-btn"
+      (click)="stopSpeechRecognition()"
+      *ngIf="isMicOn"
+    >
+      Stop Recording
+    </button>
   </div>
 </div>
