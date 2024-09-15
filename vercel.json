@@ -4,10 +4,6 @@
     {
       "src": "api/**/*.js",  
       "use": "@vercel/node"  
-    },
-    {
-      "src": "dist/cook-craft-web-app/**", 
-      "use": "@vercel/static"          
     }
   ],
   "routes": [
