@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
       const emails = result.rows.map((row) => row.email);
 
       const emailData = {
-        from: 'Excited User <newsletter@yourdomain.com>', 
+        from: 'Excited User <sandbox703cc3df5a4f4a96a76d65b67b9edc4a.mailgun.org>', 
         to: emails.join(','), 
         subject: 'Weekly Newsletter',
         text: 'Here is your weekly newsletter',
