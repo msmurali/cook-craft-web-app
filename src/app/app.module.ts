@@ -36,8 +36,9 @@ import { BlogsPageComponent } from './components/pages/blogs-page/blogs-page.com
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { NewsLettterEffects } from './store/news-letter/news-letter.effects';
 
-const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects];
+const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects, NewsLettterEffects];
 
 @NgModule({
   declarations: [
