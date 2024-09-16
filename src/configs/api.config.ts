@@ -38,8 +38,14 @@ const getSearchRecipeByIdUrl = (id: string) => {
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
 
-const getRecipeBlogsUrl = (page: number) => {
-  const apiUrl = `${apiConfig.newsApi.baseUrl}?${apiConfig.newsApi.queryParams.query}=${DEFAULT_NEWS_API_QUERY}&${apiConfig.newsApi.queryParams.searchIn}=${DEFAULT_NEWS_API_SEARCH_IN_PARAM}&${apiConfig.newsApi.queryParams.sortBy}=${DEFAULT_NEWS_API_SORT_BY_PARAM}&${apiConfig.newsApi.queryParams.pageSize}=${DEFAULT_NEWS_API_PAGE_SIZE}&${apiConfig.newsApi.queryParams.page}=${page}&${apiConfig.newsApi.queryParams.apiKey}=${environment.apiKeys.newsApi}`;
+const getRecipeBlogsUrl = () => {
+  const apiUrl = `${apiConfig.newsApi.baseUrl}`;
+  const mockApiUrl = assetsConfig.path.newsList;
+  return isProdEnvironment() ? apiUrl : mockApiUrl;
+};
+
+const getRecipeBlogsProxyUrl = (page: number) => {
+  const apiUrl = `${apiConfig.newsApiProxy.baseUrl}${apiConfig.newsApiProxy.paths.proxy}?${apiConfig.newsApi.queryParams.query}=${DEFAULT_NEWS_API_QUERY}&${apiConfig.newsApi.queryParams.searchIn}=${DEFAULT_NEWS_API_SEARCH_IN_PARAM}&${apiConfig.newsApi.queryParams.sortBy}=${DEFAULT_NEWS_API_SORT_BY_PARAM}&${apiConfig.newsApi.queryParams.pageSize}=${DEFAULT_NEWS_API_PAGE_SIZE}&${apiConfig.newsApi.queryParams.page}=${page}`;
   const mockApiUrl = assetsConfig.path.newsList;
   return isProdEnvironment() ? apiUrl : mockApiUrl;
 };
@@ -85,6 +91,23 @@ export const apiConfig = {
     },
     urls: {
       getRecipeBlogsUrl,
+    },
+  },
+  newsApiProxy: {
+    baseUrl: 'https://cook-craft-web-app.vercel.app',
+    paths: {
+      proxy: '/api/news-letter'
+    },
+    queryParams: {
+      query: 'q',
+      searchIn: 'searchIn',
+      sortBy: 'sortBy',
+      pageSize: 'pageSize',
+      page: 'page',
+      apiKey: 'apiKey',
+    },
+    urls: {
+      getRecipeBlogsProxyUrl,
     },
   },
   newsLetterApi: {
