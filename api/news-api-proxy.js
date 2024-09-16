@@ -1,10 +1,9 @@
 const axios = require("axios");
-const config = require('../src/configs/api.config.ts');
 
 module.exports = async (req, res) => {
   const { query } = req;
   const apiKey = process.env.NEWS_API_KEY;
-  const endpoint = config.apiConfig.newsApi.urls.getRecipeBlogsUrl();
+  const endpoint = 'https://newsapi.org/v2/everything'
 
   try {
     const response = await axios.get(endpoint, { apiKey, ...query });
