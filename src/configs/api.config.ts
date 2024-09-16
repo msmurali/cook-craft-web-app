@@ -96,7 +96,7 @@ export const apiConfig = {
   newsApiProxy: {
     baseUrl: 'https://cook-craft-web-app.vercel.app',
     paths: {
-      proxy: '/api/news-letter'
+      proxy: '/api/news-api-proxy'
     },
     queryParams: {
       query: 'q',
