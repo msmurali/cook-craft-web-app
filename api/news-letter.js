@@ -4,6 +4,7 @@ const mailgun = require("mailgun-js");
 const mg = mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,
+  host: 'api.eu.mailgun.net',
 });
 
 const pool = new Pool({
@@ -11,6 +12,9 @@ const pool = new Pool({
 });
 
 module.exports = async function handler(req, res) {
+  console.log("Mailgun API Key: ", process.env.MAILGUN_API_KEY);
+  console.log("Mailgun Domain: ", process.env.MAILGUN_DOMAIN);
+
   if (req.method === "POST") {
     let client;
     try {
