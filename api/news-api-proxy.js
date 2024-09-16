@@ -3,6 +3,7 @@ const axios = require("axios");
 module.exports = async (req, res) => {
   const { query } = req;
   const apiKey = process.env.NEWS_API_KEY;
+  console.log(query, apiKey)
   const endpoint = 'https://newsapi.org/v2/everything'
 
   try {
