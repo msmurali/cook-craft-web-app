@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Vercel API to Send Newsletter
-        run: curl -X POST https://cook-craft-web-70fvywo1h-msmuralis-projects.vercel.app/api/news-letter
+        run: curl -X POST https://cook-craft-web-app-msmuralis-projects.vercel.app/api/news-letter

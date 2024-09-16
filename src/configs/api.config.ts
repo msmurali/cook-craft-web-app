@@ -88,7 +88,7 @@ export const apiConfig = {
     },
   },
   newsLetterApi: {
-    baseUrl: 'https://cook-craft-web-70fvywo1h-msmuralis-projects.vercel.app',
+    baseUrl: 'https://cook-craft-web-app-msmuralis-projects.vercel.app',
     paths: {
       subscribe: '/api/subscribe',
     },
