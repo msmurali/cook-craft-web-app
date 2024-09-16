@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
 
     res.status(200).json(response.data);
   } catch (error) {
+    console.error(error);
     res.status(error.response?.status || 500).json({
       message: "Error fetching data from News API",
       error: error.message,
