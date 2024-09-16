@@ -3,6 +3,7 @@ const axios = require("axios");
 module.exports = async (req, res) => {
   const { query } = req;
   const apiKey = process.env.NEWS_API_KEY;
+  console.error(apiKey)
   const endpoint = `https://newsapi.org/v2/everything?q=recipe&searchIn=title&sortBy=relevancy&pageSize=10&page=${query?.page}&apiKey=${apiKey}}`
 
   try {
