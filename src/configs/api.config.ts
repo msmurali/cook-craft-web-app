@@ -45,7 +45,7 @@ const getRecipeBlogsUrl = (page: number) => {
 };
 
 const getSubscriptionUrl = () => {
-  const apiUrl = `${apiConfig.newsLetterApi.baseUrl}?${apiConfig.newsLetterApi.paths.subscribe}`;
+  const apiUrl = `${apiConfig.newsLetterApi.baseUrl}${apiConfig.newsLetterApi.paths.subscribe}`;
   return apiUrl;
 };
 
@@ -88,7 +88,7 @@ export const apiConfig = {
     },
   },
   newsLetterApi: {
-    baseUrl: 'https://cook-craft-web-app-msmuralis-projects.vercel.app',
+    baseUrl: 'https://cook-craft-web-app.vercel.app',
     paths: {
       subscribe: '/api/subscribe',
     },
