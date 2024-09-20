@@ -30,6 +30,7 @@ const generateHtmlContent = (articles) => {
             <div class="article-content">
                 <h1 class="poppins-medium">${article?.title}</h1>
                 <p class="poppins-regular">${article?.description}</p>
+                <a href="${article?.url}">See More</a>
             </div>
         </div>
     `
