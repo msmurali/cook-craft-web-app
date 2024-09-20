@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
       console.log(emails);
 
       const newsArticlesResponse = await fetch(newsApiProxy);
-      const newsArticlesJson = await newsApiResponse.json();
+      const newsArticlesJson = await newsArticlesResponse.json();
       const articles = newsArticlesJson?.articles || [];
 
       if (articles && articles?.length) {
