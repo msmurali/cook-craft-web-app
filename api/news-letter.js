@@ -55,6 +55,7 @@ module.exports = async function handler(req, res) {
 
       if (articles && articles?.length) {
         const htmlContent = generateHtmlContent(articles);
+        console.log(htmlContent)
         const emailData = {
           from: "CookCraft <mailgun@sandbox703cc3df5a4f4a96a76d65b67b9edc4a.mailgun.org>",
           to: emails,
