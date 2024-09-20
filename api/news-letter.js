@@ -1,4 +1,6 @@
 const { Pool } = require("pg");
+const fs = require("fs");
+const path = require("path");
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 const mailgun = new Mailgun(formData);
@@ -8,11 +10,35 @@ const mg = mailgun.client({
   key: process.env.MAILGUN_API_KEY,
 });
 
-const newsApiProxy = 'https://cook-craft-web-app.vercel.app/api/news-api-proxy';
+const newsApiProxy = "https://cook-craft-web-app.vercel.app/api/news-api-proxy";
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_CONNECTION_STRING,
 });
+
+const generateHtmlContent = (articles) => {
+  const htmlPath = path.join(__dirname, "email-template.html");
+  let htmlContent = fs.readFileSync(htmlPath, "utf8");
+
+  const articlesHtmlContent = articles
+    ?.map(
+      (article) => `
+        <div class="article" onclick="window.open('${article?.url}', '_blank')">
+            <div class="article-thumbnail">
+                <img src="${article?.urlToImage}" alt="article-thumbnail">
+            </div>
+            <div class="article-content">
+                <h1 class="poppins-medium">${article?.title}</h1>
+                <p class="poppins-regular">${article?.description}</p>
+            </div>
+        </div>
+    `
+    )
+    .join("");
+
+  htmlContent = htmlContent.replace("{{dynamicContent}}", articlesHtmlContent);
+  return htmlContent;
+};
 
 module.exports = async function handler(req, res) {
   if (req.method === "POST") {
@@ -23,25 +49,32 @@ module.exports = async function handler(req, res) {
       const emails = result.rows.map((row) => row.email);
       console.log(emails);
 
-      const articles = await fetch(newsApiProxy);
-      console.log(articles);
+      const newsArticlesResponse = await fetch(newsApiProxy);
+      const newsArticlesJson = await newsApiResponse.json();
+      const articles = newsArticlesJson?.articles || [];
 
-      const emailData = {
-        from: "Excited User <mailgun@sandbox703cc3df5a4f4a96a76d65b67b9edc4a.mailgun.org>", 
-        to: emails, 
-        subject: "Weekly Newsletter",
-        text: "Here is your weekly newsletter",
-        html: "<p>Here is your weekly newsletter</p>", 
-      };
+      if (articles && articles?.length) {
+        const htmlContent = generateHtmlContent(articles);
+        const emailData = {
+          from: "CookCraft <mailgun@sandbox703cc3df5a4f4a96a76d65b67b9edc4a.mailgun.org>",
+          to: emails,
+          subject: "Cook Craft",
+          text: "Weekly News Letter",
+          html: htmlContent,
+        };
 
-      const mailResponse = await mg.messages.create(
-        process.env.MAILGUN_DOMAIN,
-        emailData
-      );
+        const mailResponse = await mg.messages.create(
+          process.env.MAILGUN_DOMAIN,
+          emailData
+        );
 
-      return res
-        .status(200)
-        .json({ message: "Newsletter sent successfully", mailResponse });
+        return res
+          .status(200)
+          .json({ message: "Newsletter sent successfully", mailResponse });
+      } else {
+        console.log("Failed to fetch articles");
+        throw new Error("Failed to fetch articles");
+      }
     } catch (error) {
       console.error("Error occurred:", error);
       return res
