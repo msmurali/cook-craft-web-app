@@ -6,8 +6,9 @@ const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
   username: "api",
   key: process.env.MAILGUN_API_KEY,
-  url: "https://api.mailgun.net", // Use 'https://api.eu.mailgun.net' for EU region
 });
+
+const newsApiProxy = 'https://cook-craft-web-app.vercel.app/api/news-api-proxy';
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_CONNECTION_STRING,
@@ -20,6 +21,10 @@ module.exports = async function handler(req, res) {
       client = await pool.connect();
       const result = await client.query("SELECT email FROM subscribers");
       const emails = result.rows.map((row) => row.email);
+      console.log(emails);
+
+      const articles = await fetch(newsApiProxy);
+      console.log(articles);
 
       const emailData = {
         from: "Excited User <mailgun@sandbox703cc3df5a4f4a96a76d65b67b9edc4a.mailgun.org>", 
