@@ -34,7 +34,6 @@ export class BlogsPageComponent {
   ]).pipe(
     map(([totalBlogs, currentPage, perPage]) => {
       const totalPages = Math.ceil(totalBlogs / perPage);
-      console.log(totalPages, currentPage)
       return totalPages === currentPage;
     })
   );
@@ -48,7 +47,6 @@ export class BlogsPageComponent {
   }
 
   setCurrentPage(page: number) {
-    console.log(page);
     this.store.dispatch(setCurrentPage({ page }));
   }
 
