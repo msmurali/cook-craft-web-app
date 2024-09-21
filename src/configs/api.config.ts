@@ -55,6 +55,11 @@ const getSubscriptionUrl = () => {
   return apiUrl;
 };
 
+const getUnsubscribeUrl = () => {
+  const apiUrl = `${apiConfig.newsLetterApi.baseUrl}${apiConfig.newsLetterApi.paths.unsubscribe}`;
+  return apiUrl;
+}
+
 export const apiConfig = {
   mealDbApi: {
     baseUrl: 'https://www.themealdb.com/api/json/v1/1',
@@ -114,9 +119,11 @@ export const apiConfig = {
     baseUrl: 'https://cook-craft-web-app.vercel.app',
     paths: {
       subscribe: '/api/subscribe',
+      unsubscribe: '/api/unsubscribe'
     },
     urls: {
       getSubscriptionUrl,
+      getUnsubscribeUrl,
     },
   },
 };

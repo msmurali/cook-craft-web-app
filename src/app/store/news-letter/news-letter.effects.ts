@@ -25,7 +25,7 @@ export class NewsLettterEffects {
     this.actions$.pipe(
       ofType(newsLetterActions.unsubscribeNewsLetter),
       mergeMap(({ email }) =>
-        this.newsLetterApi.subscribeNewsLetter(email).pipe(
+        this.newsLetterApi.unsubScribeNewsLetter(email).pipe(
           map(() => newsLetterActions.unsubscribeNewsLetterSucceed()),
           catchError((err) => of(newsLetterActions.unsubscribeNewsLetterFailed()))
         )
@@ -46,7 +46,7 @@ export class NewsLettterEffects {
     () =>
       this.actions$.pipe(
         ofType(newsLetterActions.subscribeNewsLetterFailed),
-        tap(() => this.toast.showInfoToast('Failed to subscribe'))
+        tap(() => this.toast.showErrorToast('Failed to subscribe'))
       ),
     { dispatch: false }
   );
@@ -64,7 +64,7 @@ export class NewsLettterEffects {
     () =>
       this.actions$.pipe(
         ofType(newsLetterActions.unsubscribeNewsLetterFailed),
-        tap(() => this.toast.showInfoToast('Failed to unsubscribe'))
+        tap(() => this.toast.showErrorToast('Failed to unsubscribe'))
       ),
     { dispatch: false }
   );

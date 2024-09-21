@@ -11,5 +11,10 @@ export class NewsLetterApi {
     return this.http.post(path, { email });
   }
 
+  public unsubScribeNewsLetter(email: string) {
+    const path = apiConfig.newsLetterApi.urls.getUnsubscribeUrl();
+    return this.http.post(path, { email });
+  }
+
   constructor(readonly http: HttpClient) {}
 }
