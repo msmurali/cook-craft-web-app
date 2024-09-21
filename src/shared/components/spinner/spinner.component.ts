@@ -6,15 +6,13 @@ import { SpinnerService } from 'src/shared/services/spinner.service';
   selector: 'app-spinner',
   template: `
     <div *ngIf="isLoading$ | async" class="spinner-overlay">
-      <div class="spinner">{{ isLoading$ | async }}</div>
+      <div class="spinner"></div>
     </div>
   `,
   styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent {
-  isLoading$ = this.spinnerService.loading$;
+  isLoading$ = this.spinnerService.loadingSubject.asObservable();
 
-  constructor(private spinnerService: SpinnerService) {
-    this.isLoading$.pipe(tap(console.log)).subscribe();
-  }
+  constructor(private spinnerService: SpinnerService) {}
 }

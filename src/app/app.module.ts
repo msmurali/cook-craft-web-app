@@ -38,6 +38,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { NewsLettterEffects } from './store/news-letter/news-letter.effects';
 import { RemoveSubscriptionComponent } from './components/remove-subscription/remove-subscription.component';
+import { SpinnerService } from 'src/shared/services/spinner.service';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects, NewsLettterEffects];
 
@@ -77,7 +78,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects, Ne
       logOnly: environment.production,
     }),
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi())],
+  providers: [provideHttpClient(withInterceptorsFromDi()), SpinnerService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

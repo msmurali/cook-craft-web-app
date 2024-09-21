@@ -1,12 +1,11 @@
 import { Injectable, Renderer2, RendererFactory2, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  constructor() {}
-
   showInfoToast(message: string) {
     const toastElement = document.createElement('div');
 
