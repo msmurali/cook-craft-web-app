@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
     try {
       await client.connect();
-      await client.query("DELETE FROM subscribers (email) WHERE email = ($1)", [
+      await client.query("DELETE FROM subscribers email WHERE email = $1", [
         email,
       ]);
       await client.end();
