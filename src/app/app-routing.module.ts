@@ -4,6 +4,7 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 import { BlogsPageComponent } from './components/pages/blogs-page/blogs-page.component';
 import { RecipePageComponent } from './components/pages/recipe-page/recipe-page.component';
+import { RemoveSubscriptionComponent } from './components/remove-subscription/remove-subscription.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'recipe/:recipeId',
     component: RecipePageComponent,
     title: 'Cook Craft Recipe',
+  },
+  {
+    path: 'unsubscribe',
+    component: RemoveSubscriptionComponent,
+    title: 'Cook Craft - Unsubscribe Newsletter',
   },
 ];
 

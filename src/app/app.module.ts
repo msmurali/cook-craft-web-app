@@ -37,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { NewsLettterEffects } from './store/news-letter/news-letter.effects';
+import { RemoveSubscriptionComponent } from './components/remove-subscription/remove-subscription.component';
 
 const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects, NewsLettterEffects];
 
@@ -59,6 +60,7 @@ const effects = [RecipesEffects, RecipeCategoriesEffects, RecipeBlogsEffects, Ne
     RecipePageComponent,
     CategoryPageComponent,
     BlogsPageComponent,
+    RemoveSubscriptionComponent,
   ],
   imports: [
     BrowserModule,

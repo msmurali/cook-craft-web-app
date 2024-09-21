@@ -21,6 +21,18 @@ export class NewsLettterEffects {
     )
   );
 
+  readonly unsubscribe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(newsLetterActions.unsubscribeNewsLetter),
+      mergeMap(({ email }) =>
+        this.newsLetterApi.subscribeNewsLetter(email).pipe(
+          map(() => newsLetterActions.unsubscribeNewsLetterSucceed()),
+          catchError((err) => of(newsLetterActions.unsubscribeNewsLetterFailed()))
+        )
+      )
+    )
+  );
+
   readonly showSubscribedMessage$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -35,6 +47,24 @@ export class NewsLettterEffects {
       this.actions$.pipe(
         ofType(newsLetterActions.subscribeNewsLetterFailed),
         tap(() => this.toast.showInfoToast('Failed to subscribe'))
+      ),
+    { dispatch: false }
+  );
+
+  readonly showUnsubscribedMessage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(newsLetterActions.unsubscribeNewsLetterSucceed),
+        tap(() => this.toast.showInfoToast('Unsubsribed to news-letter'))
+      ),
+    { dispatch: false }
+  );
+
+  readonly showUnsubscriptionErrorMessage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(newsLetterActions.unsubscribeNewsLetterFailed),
+        tap(() => this.toast.showInfoToast('Failed to unsubscribe'))
       ),
     { dispatch: false }
   );
