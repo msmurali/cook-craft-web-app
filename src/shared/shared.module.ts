@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DefaultToPipe } from './pipes/default-to.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [
-    DefaultToPipe
+    DefaultToPipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule

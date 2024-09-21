@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as recipeCategoriesActions from './recipe-categories.actions';
 import { catchError, filter, map, mergeMap, of, tap } from 'rxjs';
 import { MealDbApi } from '@app/services/api/meal-db/meal-db-api.service';
+import { SpinnerService } from 'src/shared/services/spinner.service';
 
 @Injectable()
 export class RecipeCategoriesEffects {
@@ -24,24 +25,28 @@ export class RecipeCategoriesEffects {
   readonly getRecipesByCategory$ = createEffect(() =>
     this.actions$.pipe(
       ofType(recipeCategoriesActions.getRecipesByCategory),
-      mergeMap(({ category }) =>
-        this.mealDbApi.getRecipesFromCategory(category).pipe(
-          map((recipesByCategory) =>
-            recipeCategoriesActions.getRecipesByCategorySucceed({
+      mergeMap(({ category }) => {
+        this.spinner.show();
+        return this.mealDbApi.getRecipesFromCategory(category).pipe(
+          map((recipesByCategory) => {
+            this.spinner.hide();
+            return recipeCategoriesActions.getRecipesByCategorySucceed({
               recipesByCategory,
-            })
-          ),
-          catchError((err) =>
-            of(recipeCategoriesActions.getRecipesByCategoryFailed())
-          )
-        )
-      )
+            });
+          }),
+          catchError((err) => {
+            this.spinner.hide();
+            return of(recipeCategoriesActions.getRecipesByCategoryFailed());
+          })
+        );
+      })
     )
   );
 
   constructor(
     readonly store: Store,
     readonly actions$: Actions,
-    readonly mealDbApi: MealDbApi
+    readonly mealDbApi: MealDbApi,
+    readonly spinner: SpinnerService
   ) {}
 }

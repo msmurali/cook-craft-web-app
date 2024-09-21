@@ -10,6 +10,7 @@ import {
   isValidRecipeResponseVm,
   isValidRecipeVm,
 } from '@app/utils/validator.util';
+import { SpinnerService } from 'src/shared/services/spinner.service';
 
 @Injectable()
 export class RecipesEffects {
@@ -31,10 +32,18 @@ export class RecipesEffects {
     this.actions$.pipe(
       ofType(recipesActions.getRecipeByName),
       mergeMap(({ name }) =>
-        this.mealdbApi.searchRecipes(name).pipe(
-          map((recipes) => recipesActions.getRecipeByNameSucceed({ recipes })),
-          catchError((err) => of(recipesActions.getRecipeByNameFailed()))
-        )
+        { this.spinner.show();
+          return this.mealdbApi.searchRecipes(name).pipe(
+            map((recipes) => {
+              this.spinner.hide();
+              return recipesActions.getRecipeByNameSucceed({ recipes });
+            }),
+            catchError((err) => {
+              this.spinner.hide();
+              return of(recipesActions.getRecipeByNameFailed());
+            })
+          );
+        }
       )
     )
   );
@@ -44,10 +53,13 @@ export class RecipesEffects {
       this.actions$.pipe(
         ofType(recipesActions.getRecipeByNameSucceed),
         tap(({ recipes }) => {
+          this.spinner.show();
           const recipe = recipes?.find((recipe) => !!recipe?.id);
           if (recipe) {
+            this.spinner.hide();
             void this.router.navigate(['/', 'recipe', recipe?.id]);
           } else {
+            this.spinner.hide();
             this.toast.showErrorToast(
               'Recipe not found, try again with different name'
             );
@@ -61,10 +73,19 @@ export class RecipesEffects {
     this.actions$.pipe(
       ofType(recipesActions.getRecipeById),
       mergeMap(({ id }) =>
-        this.mealdbApi.searchRecipeById(id).pipe(
-          map((recipe) => recipesActions.getRecipeByIdSucceed({ recipe })),
-          catchError((err) => of(recipesActions.getRecipeByIdFailed()))
-        )
+        {
+          this.spinner.show();
+          return this.mealdbApi.searchRecipeById(id).pipe(
+            map((recipe) => {
+              this.spinner.hide();
+              return recipesActions.getRecipeByIdSucceed({ recipe });
+            }),
+            catchError((err) => {
+              this.spinner.hide();
+              return of(recipesActions.getRecipeByIdFailed());
+            })
+          );
+        }
       )
     )
   );
@@ -73,7 +94,6 @@ export class RecipesEffects {
     () =>
       this.actions$.pipe(
         ofType(recipesActions.getRecipeByIdSucceed),
-        tap(() => console.log(1)),
         tap(({ recipe }) => {
           if (isValidRecipeVm(recipe)) {
             void this.router.navigate(['/', 'recipe', recipe?.id]);
@@ -90,6 +110,7 @@ export class RecipesEffects {
     readonly actions$: Actions,
     readonly mealdbApi: MealDbApi,
     readonly router: Router,
-    readonly toast: ToastService
+    readonly toast: ToastService,
+    readonly spinner: SpinnerService
   ) {}
 }

@@ -1,6 +1,6 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.POSTGRES_CONNECTION_STRING,
 });
 
@@ -13,11 +13,11 @@ export default async function handler(req, res) {
     }
 
     try {
-      await client.connect();
+      const client = await pool.connect();
       await client.query("INSERT INTO subscribers (email) VALUES ($1)", [
         email,
       ]);
-      await client.end();
+      client.release();
       res.status(200).json({ message: "Subscribed to weekly news-letter" });
     } catch (error) {
       console.error(error);

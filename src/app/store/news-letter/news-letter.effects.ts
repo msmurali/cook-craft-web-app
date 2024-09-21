@@ -6,6 +6,7 @@ import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import * as newsLetterActions from './news-letter.actions';
 import { NewsLetterApi } from '@app/services/api/news-letter/news-letter-api.service';
 import { ToastService } from 'src/shared/services/toast.service';
+import { SpinnerService } from 'src/shared/services/spinner.service';
 
 @Injectable()
 export class NewsLettterEffects {
@@ -13,10 +14,19 @@ export class NewsLettterEffects {
     this.actions$.pipe(
       ofType(newsLetterActions.subscribeNewsLetter),
       mergeMap(({ email }) =>
-        this.newsLetterApi.subscribeNewsLetter(email).pipe(
-          map(() => newsLetterActions.subscribeNewsLetterSucceed()),
-          catchError((err) => of(newsLetterActions.subscribeNewsLetterFailed()))
-        )
+        {
+          this.spinner.show();
+          return this.newsLetterApi.subscribeNewsLetter(email).pipe(
+            map(() => {
+              this.spinner.hide();
+              return newsLetterActions.subscribeNewsLetterSucceed();
+            }),
+            catchError((err) => {
+              this.spinner.hide();
+              return of(newsLetterActions.subscribeNewsLetterFailed());
+            })
+          );
+        }
       )
     )
   );
@@ -25,10 +35,19 @@ export class NewsLettterEffects {
     this.actions$.pipe(
       ofType(newsLetterActions.unsubscribeNewsLetter),
       mergeMap(({ email }) =>
-        this.newsLetterApi.unsubScribeNewsLetter(email).pipe(
-          map(() => newsLetterActions.unsubscribeNewsLetterSucceed()),
-          catchError((err) => of(newsLetterActions.unsubscribeNewsLetterFailed()))
-        )
+        {
+          this.spinner.show();
+          return this.newsLetterApi.unsubScribeNewsLetter(email).pipe(
+            map(() => {
+              this.spinner.hide();
+              return newsLetterActions.unsubscribeNewsLetterSucceed();
+            }),
+            catchError((err) => {
+              this.spinner.hide();
+              return of(newsLetterActions.unsubscribeNewsLetterFailed());
+            })
+          );
+        }
       )
     )
   );
@@ -73,6 +92,7 @@ export class NewsLettterEffects {
     readonly store: Store,
     readonly actions$: Actions,
     readonly newsLetterApi: NewsLetterApi,
-    readonly toast: ToastService
+    readonly toast: ToastService,
+    readonly spinner: SpinnerService
   ) {}
 }

@@ -1,8 +1,9 @@
-import { Client } from "pg";
+import { Pool } from "pg";
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.POSTGRES_CONNECTION_STRING,
 });
+
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -13,11 +14,11 @@ export default async function handler(req, res) {
     }
 
     try {
-      await client.connect();
+      const client = await pool.connect();
       await client.query("DELETE FROM subscribers email WHERE email = $1", [
         email,
       ]);
-      await client.end();
+      await client.release();
       res.status(200).json({ message: "Unsubscribed to weekly news-letter" });
     } catch (error) {
       console.error(error);
